@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[859],{859:(e,t,a)=>{a.r(t),a.d(t,{default:()=>s});var r=a(184);const s=()=>(0,r.jsxs)("div",{children:[(0,r.jsx)("h1",{children:"Escape to Nature's Embrace"}),(0,r.jsx)("p",{children:"Ready to make memories that last a lifetime? Reserve your vehicle at StarGrove Campers today and step into a world where nature\u2019s beauty is your closest companion."}),(0,r.jsx)("button",{children:"Start Your Adventure"})]})}}]);
+//# sourceMappingURL=859.32701f3b.chunk.js.map
