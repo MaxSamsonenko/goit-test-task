@@ -54,19 +54,8 @@ const Modal = ({ closeModal, camper }) => {
     setActiveTab(tab);
   };
 
-  const {
-    gallery,
-    name,
-    price,
-    rating,
-    reviews,
-    location,
-    description,
-    adults,
-    transmission,
-    engine,
-    details,
-  } = camper;
+  const { gallery, name, price, rating, reviews, location, description } =
+    camper;
   return (
     <Backdrop onClick={handleBackdropClick}>
       <ModalWindow>
@@ -97,22 +86,8 @@ const Modal = ({ closeModal, camper }) => {
                   </VehicleImgListItem>
                 );
               })}
-
-              {/* <li>
-                <img src="/goit-test-task/images/van.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/goit-test-task/images/van.jpg" alt="" />
-              </li> */}
             </VehicleImgList>
-            <VehicleDescr>
-              Embrace simplicity and freedom with the Mavericks panel truck, an
-              ideal choice for solo travelers or couples seeking a compact and
-              efficient way to explore the open roads. This no-frills yet
-              reliable panel truck offers the essentials for a comfortable
-              journey, making it the perfect companion for those who value
-              simplicity and functionality.
-            </VehicleDescr>
+            <VehicleDescr>{description}</VehicleDescr>
             <BtnList>
               <BtnListItem isActive={activeTab === 'features'}>
                 <ModalBtn
@@ -132,7 +107,11 @@ const Modal = ({ closeModal, camper }) => {
               </BtnListItem>
             </BtnList>
             <TabWrapper>
-              {activeTab === 'features' ? <FeaturesTab /> : <ReviewsTab />}
+              {activeTab === 'features' ? (
+                <FeaturesTab camper={camper} />
+              ) : (
+                <ReviewsTab />
+              )}
               <BookForm />
             </TabWrapper>
           </ScrollAreaWrapper>

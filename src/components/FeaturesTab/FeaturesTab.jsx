@@ -20,7 +20,7 @@ import {
   IconBtnCategoriesRadio,
 } from 'images/icons';
 
-const FeaturesTab = () => {
+const FeaturesTab = ({ camper }) => {
   return (
     <TabWrapper>
       <div>
