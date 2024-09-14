@@ -77,4 +77,7 @@ export const SubmitBtn = styled.button`
   color: #ffffff;
   font-weight: 500;
   width: 173px;
+  &:hover {
+    background-color: #d84343;
+  }
 `;

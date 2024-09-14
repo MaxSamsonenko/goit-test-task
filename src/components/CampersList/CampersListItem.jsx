@@ -1,4 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchFavorite,
+  addFavorite,
+  removeFavorite,
+} from '../../redux/operations';
 import {
   IconHeart,
   IconReviewStarIcon,
@@ -14,7 +20,6 @@ import {
 import {
   ListItem,
   ImgWrapper,
-  Img,
   NamePriceWrapper,
   VanNamePrice,
   PriceWrapper,
@@ -25,10 +30,15 @@ import {
   Category,
   ShowMoreBtn,
 } from './CampersList.styled';
+import { selectFavorites } from '../../redux/selectors';
 
 const CampersListItem = ({ openModal, camper }) => {
   const [liked, setLiked] = useState(false);
+  const favorites = useSelector(selectFavorites);
+  const dispatch = useDispatch();
+  console.log(favorites);
   const {
+    _id,
     gallery,
     name,
     price,
@@ -42,8 +52,18 @@ const CampersListItem = ({ openModal, camper }) => {
     details,
   } = camper;
 
-  const toggleLike = () => {
+  useEffect(() => {
+    dispatch(fetchFavorite());
+  });
+
+  const isFavorite = id => {
+    return favorites.find(id => id === _id);
+  };
+  const toggleLike = id => {
     setLiked(!liked);
+    isFavorite(_id)
+      ? dispatch(removeFavorite(_id))
+      : dispatch(addFavorite(_id));
   };
 
   function truncateString(str, maxLength) {
@@ -56,24 +76,26 @@ const CampersListItem = ({ openModal, camper }) => {
     if (!str) return str;
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
-  console.log(camper);
 
   return (
     <ListItem>
-      <ImgWrapper>
-        <Img src={gallery[0]} alt={name} />
-      </ImgWrapper>
+      <ImgWrapper image={gallery[0]}></ImgWrapper>
       <div>
         <NamePriceWrapper>
           <VanNamePrice>{name}</VanNamePrice>
           <PriceWrapper>
             <VanNamePrice>&#x24; {price}</VanNamePrice>
-            <LikeBtn type="button" onClick={toggleLike}>
+            <LikeBtn
+              type="button"
+              onClick={() => {
+                toggleLike(_id);
+              }}
+            >
               <IconHeart
                 width="24"
                 height="24"
-                fill={liked ? '#E44848' : 'transparent'}
-                stroke={liked ? '#E44848' : '#101828'}
+                fill={isFavorite(_id) ? '#E44848' : 'transparent'}
+                stroke={isFavorite(_id) ? '#E44848' : '#101828'}
               />
             </LikeBtn>
           </PriceWrapper>

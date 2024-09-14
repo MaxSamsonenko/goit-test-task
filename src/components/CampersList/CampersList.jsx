@@ -1,13 +1,9 @@
-import { useSelector } from 'react-redux';
-// import { selectAdverts } from 'redux/selectors.js';
 import CampersListItem from './CampersListItem';
 
-const CampersList = ({ openModal }) => {
-  const adverts = useSelector(state => state.adverts.items);
-  console.log(adverts);
+const CampersList = ({ openModal, campers }) => {
   return (
     <ul>
-      {adverts.map(advert => {
+      {campers.map(advert => {
         return (
           <CampersListItem
             openModal={() => openModal(advert)}

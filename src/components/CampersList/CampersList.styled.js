@@ -14,6 +14,9 @@ export const ImgWrapper = styled.div`
   flex-basis: auto;
   border-radius: 10px;
   overflow: hidden;
+  background-image: ${props => `url(${props.image})`};
+  background-position: center;
+  background-size: 100% 100%;
 `;
 
 export const Img = styled.img`
@@ -78,4 +81,7 @@ export const ShowMoreBtn = styled.button`
   color: #ffffff;
   font-weight: 500;
   width: 166px;
+  &:hover {
+    background-color: #d84343;
+  }
 `;
